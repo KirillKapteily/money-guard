@@ -10,7 +10,7 @@ function App() {
   const [userPasswordCkeck, setUserPasswordCkeck] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [registeredUser, setRegisteredUser] = useState( JSON.parse(localStorage.getItem("user")))
+  const [registeredUser, setRegisteredUser] = useState({} || JSON.parse(localStorage.getItem("user")))
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleSubmit = (e) => {
