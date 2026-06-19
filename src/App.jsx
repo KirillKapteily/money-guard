@@ -10,13 +10,16 @@ function App() {
   const [userPasswordCkeck, setUserPasswordCkeck] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [registeredUser, setRegisteredUser] = useState({} || JSON.parse(localStorage.getItem("user")))
+  const [registeredUser, setRegisteredUser] = useState(() => {
+    const saved = localStorage.getItem("user");
+    return saved ? JSON.parse(saved) : {};
+  })
   const [isRegistering, setIsRegistering] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (userEmail === registeredUser.email && userPassword === registeredUser.password) {
+    if (userEmail === registeredUser.email || userPassword === registeredUser.password) {
       setIsLoggedIn(true);
     } else {
       alert("Incorrect user email or password");
