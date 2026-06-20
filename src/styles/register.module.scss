@@ -6,6 +6,22 @@
     height: 100%;
 }
 
+body{
+background-image: url("./login-background.png");
+}
+
+.validate__bad{
+
+}
+
+.validate__medium{
+
+}
+
+.validate__good{
+
+}
+
 .reg__backdrop {
     padding-left: 62px;
     padding-right: 62px;
@@ -68,7 +84,9 @@
     text-transform: uppercase;
     color: #FBFBFB;
 
-
+&:hover{
+     background: linear-gradient(96.76deg, #9E40BA -16.42%, #FFC727 97.04%, #7000FF 150.71%);
+}
 }
 
 .not__active__btn {
@@ -107,15 +125,8 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-    /* identical to box height */
-
-    /* white 60% */
+    margin-bottom: 11px;
     color: rgba(255, 255, 255, 0.6);
-
-
-
-
-
 }
 
 .lock {
@@ -129,4 +140,19 @@
     flex-direction: column;
          margin-top: 40px;
 }
+
+@media (min-width:320px) and (max-width:480px)  {
+    .reg__backdrop{
+  width: 320px;
+    }
+
+    .reg__background{
+        width: 320px;
+    }
+
+    .input__wrapper{
+        width: 280px;
+    }
+}
+
 //font-family: "Poppins", sans-serif;
