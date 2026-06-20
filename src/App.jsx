@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Chart } from "chart.js";
+import styles from "./styles/body.module.scss" 
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/header";
 import Register from "./components/Register";
+import Logout from "./components/Logout";
 
 function App() {
   const [username, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordCkeck, setUserPasswordCkeck] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [isLoggingOut, setIsLoggingOut] =useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [registeredUser, setRegisteredUser] = useState(() => {
     const saved = localStorage.getItem("user");
@@ -66,6 +69,13 @@ function App() {
 
   }
 
+  if (isLoggingOut) {
+    return <Logout
+    loggingout={setIsLoggingOut}
+    setIsLoggedIn={setIsLoggedIn}
+    />
+  }
+
   if (isRegistering) {
     return <Register
       setIsRegistering={setIsRegistering}
@@ -78,7 +88,7 @@ function App() {
   }
 
   if (isLoggedIn) {
-    return (<><Header />
+    return (<><Header name={registeredUser.name} loggingout={setIsLoggingOut}/>
       <Home transactions={transactions} setTransactions={setTransactions} /></>)
   }
 
