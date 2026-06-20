@@ -6,6 +6,7 @@
     height: 100%;
 }
 
+
 .login__backdrop {
     padding-left: 62px;
     padding-right: 62px;
@@ -66,9 +67,12 @@
     text-align: center;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     color: #FBFBFB;
 
-
+&:hover{
+     background: linear-gradient(96.76deg, #9E40BA -16.42%, #FFC727 97.04%, #7000FF 150.71%);
+}
 }
 
 .not__active__btn {
@@ -92,6 +96,8 @@
     width: 24px;
     height: 24px;
         margin-right: 20px;
+        position: relative;
+        bottom: 7px;
 }
 
 .input {
@@ -107,15 +113,8 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-    /* identical to box height */
-
-    /* white 60% */
+    margin-bottom: 11px;
     color: rgba(255, 255, 255, 0.6);
-
-
-
-
-
 }
 
 .lock {
@@ -128,6 +127,35 @@
     display: flex;
     flex-direction: column;
          margin-top: 52px;
+}
+
+@media (min-width:533px) and (max-width:768px)  {
+    .login__backdrop{
+  width: 533px;
+    }
+
+    .login__background{
+        width: 768px;
+    }
+
+}
+
+@media (min-width:320px) and (max-width:480px)  {
+    .login__backdrop{
+  width: 320px;
+   padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    }
+
+    .login__background{
+        width: 320px;
+    }
+
+    .input__wrapper{
+        width: 280px;
+    }
 }
 
 //font-family: "Poppins", sans-serif;
