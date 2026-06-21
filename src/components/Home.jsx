@@ -10,9 +10,7 @@ export default function Home({ transactions, setTransactions }) {
   const [editingTransaction, setEditingTransaction] = useState(null);
 
   const balance = transactions.reduce((acc, t) => {
-    return (t.type === 'income' || t.type === '+') 
-      ? acc + t.sum 
-      : acc - t.sum;
+    return (t.type === 'income' || t.type === '+') ? acc + t.sum : acc - t.sum;
   }, 0);
 
   const handleAdd = (newTransaction) => {
