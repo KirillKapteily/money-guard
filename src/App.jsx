@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Chart } from "chart.js";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/header";

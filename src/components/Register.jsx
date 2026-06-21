@@ -25,6 +25,7 @@ export default function Register({ setIsRegistering, handleRegister, setUsername
                         <svg className={styles.email}><use href="./symbol-defs-k.svg#icon-lock" width="24" height="24"></use></svg>
                         <input type="password" placeholder="confirm Password" className={styles.input} onChange={(e) => setUserPasswordCkeck(e.target.value)} />
                     </div>
+                    <div className={styles.validate}></div>
                     <div className={styles.btn__wrapper}>
                         <button className={styles.active__btn} type="submit">Register</button>
                         <button onClick={() => setIsRegistering(false)} className={styles.not__active__btn}>Login</button>
