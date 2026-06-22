@@ -55,6 +55,17 @@ function App() {
     console.log(userPassword);
     console.log("#?", hasSpecialSymbol);
   }, [userPassword]);
+  // -----транзакція(макс)-----
+  const [transactions, setTransactions] = useState(() => {
+  const saved = localStorage.getItem('transactions')
+  return saved ? JSON.parse(saved) : [
+    { id: 1, date: '04.01.19', type: '-', category: 'Other', comment: 'Gift for your wife', sum: 300 },
+    { id: 2, date: '05.01.19', type: '+', category: 'Income', comment: 'January bonus', sum: 8000 },
+    { id: 3, date: '07.01.19', type: '-', category: 'Car', comment: 'Oil', sum: 1000 },
+    { id: 4, date: '07.01.19', type: '-', category: 'Products', comment: 'Vegetables for the week', sum: 280 },
+    { id: 5, date: '07.01.19', type: '+', category: 'Income', comment: 'Gift', sum: 1000 },
+  ]
+})
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -119,12 +130,8 @@ function App() {
   }
 
   if (isLoggedIn) {
-    return (
-      <>
-        <Header name={registeredUser.name} loggingout={setIsLoggingOut} />
-        <Home />
-      </>
-    );
+    return (<><Header name={registeredUser.name} loggingout={setIsLoggingOut}/>
+      <Home transactions={transactions} setTransactions={setTransactions} /></>)
   }
 
   return (
