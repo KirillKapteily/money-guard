@@ -5,3 +5,17 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.container{
+    width: 1280px;
+    margin: 0 auto;
+    outline: red 1px solid;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .container{
+    width: 320px;
+    margin: 0 auto;
+    outline: red 1px solid;
+}
+}

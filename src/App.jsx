@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Chart } from "chart.js";
-import styles from "./styles/body.module.scss" 
+import styles from "./styles/body.module.scss";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/header";
@@ -12,14 +12,49 @@ function App() {
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordCkeck, setUserPasswordCkeck] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [isLoggingOut, setIsLoggingOut] =useState(false)
+  const [validatePassword, setValidatePassword] = useState("none");
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [registeredUser, setRegisteredUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : {};
-  })
+  });
   const [isRegistering, setIsRegistering] = useState(false);
 
+  const specialSymbols = [
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "(",
+    ")",
+    "-",
+    "+",
+  ];
+  const hasSpecialSymbol = specialSymbols.some((symbol) =>
+    userPassword.includes(symbol),
+  );
+
+  useEffect(() => {
+    if (userPassword.length < 8) {
+      setValidatePassword("validate__bad");
+    } else if (userPassword.length > 8 && hasSpecialSymbol === true) {
+      setValidatePassword("validate__good");
+    } else if (userPassword.length === 0) {
+      setValidatePassword("none");
+    } else {
+      setValidatePassword("validate__medium");
+    }
+    console.log(userPassword.length);
+
+    console.log(validatePassword);
+    console.log(userPassword);
+    console.log("#?", hasSpecialSymbol);
+  }, [userPassword]);
   // -----транзакція(макс)-----
   const [transactions, setTransactions] = useState(() => {
   const saved = localStorage.getItem('transactions')
@@ -35,7 +70,10 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (userEmail === registeredUser.email || userPassword === registeredUser.password) {
+    if (
+      userEmail === registeredUser.email &&
+      userPassword === registeredUser.password
+    ) {
       setIsLoggedIn(true);
     } else {
       alert("Incorrect user email or password");
@@ -46,45 +84,49 @@ function App() {
 
       return;
     }
-  }
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
 
-    if (userPassword !== userPasswordCkeck && userPassword.length < 8) {
+    if (userPassword !== userPasswordCkeck || userPassword.length < 8) {
       alert("Password is too weak or doesn't match");
       return;
-    };
+    }
 
     const registered = {
       name: username,
       password: userPassword,
-      email: userEmail
-    }
+      email: userEmail,
+    };
     setRegisteredUser(registered);
     setIsRegistering(false);
     console.log(registeredUser);
 
     localStorage.setItem("user", JSON.stringify(registered));
-
-  }
+  };
 
   if (isLoggingOut) {
-    return <Logout
-    loggingout={setIsLoggingOut}
-    setIsLoggedIn={setIsLoggedIn}
-    />
+    return (
+      <>
+        <Header name={registeredUser.name} loggingout={setIsLoggingOut} />
+        <Logout loggingout={setIsLoggingOut} setIsLoggedIn={setIsLoggedIn} />
+      </>
+    );
   }
 
   if (isRegistering) {
-    return <Register
-      setIsRegistering={setIsRegistering}
-      handleRegister={handleRegister}
-      setUsername={setUsername}
-      setUserPassword={setUserPassword}
-      setUserEmail={setUserEmail}
-      setUserPasswordCkeck={setUserPasswordCkeck}
-    />
+    return (
+      <Register
+        setIsRegistering={setIsRegistering}
+        handleRegister={handleRegister}
+        setUsername={setUsername}
+        setUserPassword={setUserPassword}
+        setUserEmail={setUserEmail}
+        setUserPasswordCkeck={setUserPasswordCkeck}
+        validatePassword={validatePassword}
+      />
+    );
   }
 
   if (isLoggedIn) {
@@ -105,7 +147,7 @@ function App() {
         setIsRegistering={setIsRegistering}
       />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
