@@ -1,5 +1,4 @@
 import HomeSidebar from "./HomeSidebar";
-import TransactionsList from "./TransactionsList";
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import TransactionsList from './TransactionsList';
@@ -33,7 +32,7 @@ export default function Home({ transactions, setTransactions }) {
 
   return (
     <div className="home-container">
-      <Sidebar balance={balance} />
+      <HomeSidebar balance={balance} />
 
       <div className="main-content">
         <div className="balance-section">
