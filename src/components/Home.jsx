@@ -1,5 +1,3 @@
-import HomeSidebar from "./HomeSidebar";
-import TransactionsList from "./TransactionsList";
 import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import TransactionsList from './TransactionsList';
