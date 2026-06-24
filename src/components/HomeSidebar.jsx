@@ -92,7 +92,7 @@ const HomeSidebar = ({ transactions = [] }) => {
 
       <div className={styles.balanceDiv}>
         <span className={styles.balanceLabel}>YOUR BALANCE</span>
-        <h2 className={styles.balanceValue}>{`₴ `}</h2>
+        <h2 className={styles.balanceValue}>{`₴ ${totalBalance.toFixed(2)}`}</h2>
       </div>
 
       <div className={styles.tableContainer}>
