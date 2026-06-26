@@ -1,0 +1,239 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(83, 61, 186, 0.9) 0%,
+    rgba(45, 35, 130, 0.95) 100%
+  );
+  border-radius: 20px;
+  padding: 40px 73px;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 767px) {
+    padding: 40px 20px;
+    max-width: 320px;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+// --- Toggle ---
+.typeToggle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.typeLabel {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
+}
+
+.activeIncome {
+  color: #ffe234;
+  font-weight: 700;
+}
+
+.activeExpense {
+  color: #ff6596;
+  font-weight: 700;
+}
+
+.toggleWrapper {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.toggleInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggleSlider {
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  transition: background 0.3s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.3s;
+  }
+
+  &.income {
+    background: linear-gradient(90deg, #ffe234, #ffa500);
+
+    &::before {
+      transform: translateX(0);
+    }
+  }
+
+  &.expense {
+    background: linear-gradient(90deg, #ff6596, #ff2d55);
+
+    &::before {
+      transform: translateX(30px);
+    }
+  }
+}
+
+.categoryDisplay {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+  align-self: flex-start;
+  padding-left: 2px;
+}
+
+// --- Фома ---
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 18px;
+  padding: 8px 4px;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:focus {
+    border-bottom-color: #fff;
+  }
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.6);
+    cursor: pointer;
+  }
+}
+
+.commentInput {
+  width: 100%;
+}
+
+.dateWrapper {
+  position: relative;
+  width: 100%;
+}
+
+// --- кнопка ---
+.saveBtn {
+  width: 100%;
+  max-width: 300px;
+  padding: 14px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #ffe234 0%, #ffa500 50%, #ff6596 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.cancelBtn {
+  width: 100%;
+  max-width: 300px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  background: transparent;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+  }
+}

@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Sidebar from './Sidebar';
 import TransactionsList from './TransactionsList';
 import AddTransaction from './AddTransactions';
 import EditTransaction from './EditTransactions';
 
-export default function Home({ transactions, setTransactions }) {
 
+
+export default function Home({ transactions, setTransactions }) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
 
   const balance = transactions.reduce((acc, t) => {
-    return (t.type === 'income' || t.type === '+') 
-      ? acc + Number(t.sum) 
-      : acc - Number(t.sum);
+    return (t.type === 'income' || t.type === '+') ? acc + t.sum : acc - t.sum;
   }, 0);
 
   const handleAdd = (newTransaction) => {
@@ -21,7 +21,7 @@ export default function Home({ transactions, setTransactions }) {
   };
 
   const handleEdit = (updatedTransaction) => {
-    setTransactions(prev => 
+    setTransactions(prev =>
       prev.map(t => t.id === updatedTransaction.id ? updatedTransaction : t)
     );
     setEditingTransaction(null);
@@ -33,34 +33,36 @@ export default function Home({ transactions, setTransactions }) {
 
   return (
     <div className="home-container">
-      <Sidebar balance={balance} />
+      <Sidebar
+        balance={balance}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
 
       <div className="main-content">
-        <div className="balance-section">
-          <h2>Your Balance</h2>
-          <h1 className="balance-amount">₴ {balance.toLocaleString('uk-UA')}</h1>
-        </div>
+        <TransactionsList
+          transactions={transactions}
+          onEdit={setEditingTransaction}
+          onDelete={handleDelete}
+        />
 
-        <button 
+        <button
           className="add-transaction-btn"
           onClick={() => setIsAddModalOpen(true)}
         >
-          + Add Transaction
+          +
         </button>
-
-        <div className="transactions-section">
-          <h2>Recent Transactions</h2>
-          <TransactionsList 
-            transactions={transactions}
-            onEdit={setEditingTransaction}
-            onDelete={handleDelete}
-          />
-        </div>
       </div>
 
-      {isAddModalOpen && <AddTransaction onAdd={handleAdd} onClose={() => setIsAddModalOpen(false)} />}
+      {isAddModalOpen && (
+        <AddTransaction
+          onAdd={handleAdd}
+          onClose={() => setIsAddModalOpen(false)}
+        />
+      )}
+
       {editingTransaction && (
-        <EditTransaction 
+        <EditTransaction
           transaction={editingTransaction}
           onSave={handleEdit}
           onClose={() => setEditingTransaction(null)}
