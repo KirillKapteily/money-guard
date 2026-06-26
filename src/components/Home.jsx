@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Sidebar from './Sidebar';
 import TransactionsList from './TransactionsList';
 import AddTransaction from './AddTransactions';
 import EditTransaction from './EditTransactions';
+import '../styles/home.css';
 
 export default function Home({ transactions, setTransactions }) {
-
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const [activeTab, setActiveTab] = useState('home');
 
   const balance = transactions.reduce((acc, t) => {
     return (t.type === 'income' || t.type === '+') ? acc + t.sum : acc - t.sum;
@@ -19,7 +20,7 @@ export default function Home({ transactions, setTransactions }) {
   };
 
   const handleEdit = (updatedTransaction) => {
-    setTransactions(prev => 
+    setTransactions(prev =>
       prev.map(t => t.id === updatedTransaction.id ? updatedTransaction : t)
     );
     setEditingTransaction(null);
@@ -31,37 +32,36 @@ export default function Home({ transactions, setTransactions }) {
 
   return (
     <div className="home-container">
-      <Sidebar balance={balance} />
+      <Sidebar
+        balance={balance}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
 
       <div className="main-content">
-        <div className="balance-section">
-          <h2>Your Balance</h2>
-          <h1 className="balance-amount">₴ {balance.toLocaleString('uk-UA')}</h1>
-        </div>
-
-        <button 
-          className="add-transaction-btn"
-          onClick={() => setIsAddModalOpen(true)}
-        >
-          + Add Transaction
-        </button>
-
-        <TransactionsList 
+        <TransactionsList
           transactions={transactions}
           onEdit={setEditingTransaction}
           onDelete={handleDelete}
         />
+
+        <button
+          className="add-transaction-btn"
+          onClick={() => setIsAddModalOpen(true)}
+        >
+          +
+        </button>
       </div>
 
       {isAddModalOpen && (
-        <AddTransaction 
-          onAdd={handleAdd} 
-          onClose={() => setIsAddModalOpen(false)} 
+        <AddTransaction
+          onAdd={handleAdd}
+          onClose={() => setIsAddModalOpen(false)}
         />
       )}
 
       {editingTransaction && (
-        <EditTransaction 
+        <EditTransaction
           transaction={editingTransaction}
           onSave={handleEdit}
           onClose={() => setEditingTransaction(null)}
