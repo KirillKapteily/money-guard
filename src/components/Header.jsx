@@ -3,11 +3,10 @@ import styles from "../styles/header.module.scss";
 import cont from "../styles/body.module.scss";
 
 export default function Header({ name, loggingout }) {
-  
   return (
-    <header>
+    <div className={cont.container}>
+      <header>
         <div>
-        <div className={cont.container}>
           <svg className={styles.logo}>
             <use
               href="./symbol-defs-k-header.svg#icon-money-guard-merged-logo"
@@ -38,8 +37,8 @@ export default function Header({ name, loggingout }) {
               Exit
             </p>
           </div>
-    </div>
         </div>
       </header>
+    </div>
   );
 }
