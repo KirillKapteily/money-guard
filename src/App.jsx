@@ -116,6 +116,9 @@ function App() {
         ];
   });
 
+  useEffect(() => {
+  localStorage.setItem('transactions', JSON.stringify(transactions));
+}, [transactions]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
