@@ -89,7 +89,9 @@ export default function Register({
                 Register
               </button>
               <button
-                onClick={() => setIsRegistering(false)}
+                onClick={() => {
+                  setIsRegistering(false);
+                }}
                 className={styles.not__active__btn}
               >
                 Login
