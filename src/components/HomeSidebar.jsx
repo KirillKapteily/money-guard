@@ -30,9 +30,9 @@ const HomeSidebar = ({ transactions = [] }) => {
   const [loading, setLoading] = useState(true);
 
   const totalBalance = transactions.reduce((acc, transaction) => {
-    if (transaction.type === "+") return acc + transaction.sum;
-    if (transaction.type === "-") return acc - transaction.sum;
-    return acc;
+    if (transaction.type === "+" || transaction.type === "income") return acc + transaction.sum;
+    if (transaction.type === "-" || transaction.type === "expense") return acc - transaction.sum;
+  return acc;
   }, 0);
 
   useEffect(() => {
