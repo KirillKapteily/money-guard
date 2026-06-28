@@ -1,22 +1,21 @@
 import TransactionsItem from './TransactionsItem';
+import styles from '../styles/transactions.module.scss';
 
 export default function TransactionsList({ transactions, onEdit, onDelete }) {
   return (
-    <div className="transactions-section">
-      <h2>Recent Transactions</h2>
-      
+    <div className={styles.section}>
       {transactions.length === 0 ? (
-        <p className="no-transactions">No transactions yet. Add your first one!</p>
+        <p className={styles.empty}>No transactions yet. Add your first one!</p>
       ) : (
-        <table className="transactions-table">
+        <table className={styles.table}>
           <thead>
-            <tr>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Category</th>
-              <th>Comment</th>
-              <th>Sum</th>
-              <th>Actions</th>
+            <tr className={styles.theadRow}>
+              <th className={styles.th}>Date</th>
+              <th className={styles.th}>Type</th>
+              <th className={styles.th}>Category</th>
+              <th className={styles.th}>Comment</th>
+              <th className={`${styles.th} ${styles.thRight}`}>Sum</th>
+              <th className={styles.th}></th>
             </tr>
           </thead>
           <tbody>
