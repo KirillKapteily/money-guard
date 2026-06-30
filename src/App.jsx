@@ -16,7 +16,7 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [validatePassword, setValidatePassword] = useState("none");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [registeredUser, setRegisteredUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : {};
@@ -56,8 +56,10 @@ function App() {
       setValidatePassword("validate__bad");
     } else if (userPassword.length > 8 && hasSpecialSymbol === true) {
       setValidatePassword("validate__good");
-    } else if (userPassword.length === 0) {
-      setValidatePassword("none");
+    } else if (userPassword.length === 1) {
+      setValidatePassword("validate__none");
+      console.log("NONE!!!");
+      
     } else {
       setValidatePassword("validate__medium");
     }

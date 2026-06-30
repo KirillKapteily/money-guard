@@ -1,10 +1,10 @@
-// .login__background {
-//   background-color: black;
-//   background-image: url("./login-background.png");
-//   background-size: cover;
-//   width: 100%;
-//   height: 100%;
-// }
+.login__background {
+    // height: 100vh;
+    display: flex;
+  justify-content: center; 
+  align-items: center; 
+    min-height: 100vh;  
+}
 
 .login__backdrop {
   padding-left: 62px;
@@ -54,6 +54,8 @@
 .active__btn {
   width: 300px;
   height: 50px;
+  overflow: hidden;
+  position: relative;
   background: linear-gradient(
     96.76deg,
     #ffc727 -16.42%,
@@ -71,10 +73,28 @@
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   color: #fbfbfb;
 
-  &:hover {
+  &::before {
+    content: "LOG IN";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      96.76deg,
+      #9e40ba -16.42%,
+      #ffc727 97.04%,
+      #7000ff 150.71%
+    );
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  &:hover::before {
+    opacity: 1;
     background: linear-gradient(
       96.76deg,
       #9e40ba -16.42%,
@@ -83,6 +103,7 @@
     );
   }
 }
+
 
 .not__active__btn {
   width: 300px;
@@ -99,14 +120,20 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #623f8b;
+  background-color: white;
+  transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.604);
+  }
 }
 
 .email {
-  width: 24px;
+  width: 26px;
   height: 24px;
   margin-right: 20px;
   position: relative;
-  bottom: 7px;
+  bottom: 6px;
 }
 
 .input {
@@ -130,6 +157,8 @@
   width: 24px;
   height: 24px;
   margin-right: 20px;
+  position: relative;
+  bottom: 6px;
 }
 
 .login__form {
@@ -146,6 +175,10 @@
   .login__background {
     width: 768px;
   }
+
+  body {
+    background-image: url("./login-background-tablet.png") !important;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -153,13 +186,14 @@
     width: 320px;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin-right: 0px;
   }
 
   .login__background {
-   //width: 320px;
+    //width: 320px;
+
   }
 
   .input__wrapper {
