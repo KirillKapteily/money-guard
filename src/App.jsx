@@ -16,7 +16,7 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [validatePassword, setValidatePassword] = useState("none");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [registeredUser, setRegisteredUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : {};

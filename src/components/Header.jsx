@@ -26,7 +26,6 @@ export default function Header({ name, loggingout }) {
               className={styles.exit__wrapper}
               onClick={() => loggingout(true)}
             >
-              <p className={styles.exit__text}>
                 <svg className={styles.exit}>
                   <use
                     href="./symbol-defs-k-header.svg#icon-exit"
@@ -34,6 +33,7 @@ export default function Header({ name, loggingout }) {
                     height="18"
                   ></use>
                 </svg>
+              <p className={styles.exit__text}>
                 Exit
               </p>
             </div>
