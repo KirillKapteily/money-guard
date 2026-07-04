@@ -24,24 +24,26 @@ export default function TransactionsItem({ transaction, onEdit, onDelete }) {
         </span>
       </td>
 
-      <td className={`${styles.cell} ${styles.cellActions}`}>
-        <button
-          className={styles.editBtn}
-          onClick={() => onEdit(transaction)}
-          type="button"
-          aria-label="Edit"
-        >
-          ✏️
-        </button>
+      <td className={styles.cell}>
+        <div className={styles.actions}>
+          <button
+            className={styles.editBtn}
+            onClick={() => onEdit(transaction)}
+            type="button"
+            aria-label="Edit"
+          >
+      ✏️
+    </button>
 
-        <button
-          className={styles.deleteBtn}
-          onClick={() => onDelete(id)}
-          type="button"
-        >
-          Delete
-        </button>
-      </td>
+    <button
+      className={styles.deleteBtn}
+      onClick={() => onDelete(id)}
+      type="button"
+    >
+      Delete
+    </button>
+  </div>
+</td>
     </tr>
   );
 }
