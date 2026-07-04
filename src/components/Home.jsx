@@ -4,35 +4,41 @@ import TransactionsList from './TransactionsList';
 import AddTransaction from './AddTransactions';
 import EditTransaction from './EditTransactions';
 
+import homeStyles from '../styles/home.module.scss';
+import transStyles from '../styles/transactions.module.scss';
+
 export default function Home({ transactions, setTransactions }) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
 
-  const balance = transactions.reduce((acc, t) => {
-    return (t.type === 'income' || t.type === '+') ? acc + t.sum : acc - t.sum;
-  }, 0);
-
-  const handleAdd = (newTransaction) => {
+  const handleAdd = newTransaction => {
     setTransactions(prev => [newTransaction, ...prev]);
     setIsAddModalOpen(false);
   };
 
-  const handleEdit = (updatedTransaction) => {
+  const handleEdit = updatedTransaction => {
     setTransactions(prev =>
-      prev.map(t => t.id === updatedTransaction.id ? updatedTransaction : t)
+      prev.map(transaction =>
+        transaction.id === updatedTransaction.id
+          ? updatedTransaction
+          : transaction
+      )
     );
+
     setEditingTransaction(null);
   };
 
-  const handleDelete = (id) => {
-    setTransactions(prev => prev.filter(t => t.id !== id));
+  const handleDelete = id => {
+    setTransactions(prev =>
+      prev.filter(transaction => transaction.id !== id)
+    );
   };
 
   return (
-    <div className="home-container">
+    <div className={homeStyles.homeContainer}>
       <HomeSidebar transactions={transactions} />
 
-      <div className="main-content">
+      <main className={homeStyles.mainContent}>
         <TransactionsList
           transactions={transactions}
           onEdit={setEditingTransaction}
@@ -40,12 +46,12 @@ export default function Home({ transactions, setTransactions }) {
         />
 
         <button
-          className="add-transaction-btn"
+          type="button"
+          className={transStyles.addBtn}
+          aria-label="Add transaction"
           onClick={() => setIsAddModalOpen(true)}
-        >
-          +
-        </button>
-      </div>
+        />
+      </main>
 
       {isAddModalOpen && (
         <AddTransaction
