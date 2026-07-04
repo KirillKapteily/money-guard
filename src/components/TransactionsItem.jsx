@@ -1,43 +1,49 @@
-import EditIcon from '../assets/Icon.svg';
+import styles from '../styles/transactions.module.scss';
 
 export default function TransactionsItem({ transaction, onEdit, onDelete }) {
-  
   const { id, date, type, category, comment, sum } = transaction;
-
   const isIncome = type === 'income' || type === '+';
 
   return (
-    <tr className="transaction-row">
-      <td className="date">{date}</td>
-      
-      <td className="type">
-        <span className={isIncome ? "type-badge income" : "type-badge expense"}>
+    <tr className={styles.row}>
+      <td className={styles.cell}>{date}</td>
+
+      <td className={styles.cell}>
+        <span className={`${styles.typeBadge} ${isIncome ? styles.income : styles.expense}`}>
           {isIncome ? '+' : '-'}
         </span>
       </td>
 
-      <td className="category">{category}</td>
-      <td className="comment">{comment}</td>
+      <td className={styles.cell}>{category}</td>
 
-      <td className={isIncome ? "sum positive" : "sum negative"}>
-        {isIncome ? '+' : ''}₴ {sum.toLocaleString('uk-UA')}
+      <td className={styles.cell}>{comment}</td>
+
+      <td className={`${styles.cell} ${styles.cellSum}`}>
+        <span className={isIncome ? styles.sumPositive : styles.sumNegative}>
+          {sum.toLocaleString('uk-UA')}
+        </span>
       </td>
 
-      <td className="actions">
-        <button 
-          className="edit-btn"
-          onClick={() => onEdit(transaction)}
-        >
-          <img src={EditIcon} alt="Edit" />
-        </button>
+      <td className={styles.cell}>
+        <div className={styles.actions}>
+          <button
+            className={styles.editBtn}
+            onClick={() => onEdit(transaction)}
+            type="button"
+            aria-label="Edit"
+          >
+      ✏️
+    </button>
 
-        <button 
-          className="delete-btn"
-          onClick={() => onDelete(id)}
-        >
-          Delete
-        </button>
-      </td>
+    <button
+      className={styles.deleteBtn}
+      onClick={() => onDelete(id)}
+      type="button"
+    >
+      Delete
+    </button>
+  </div>
+</td>
     </tr>
   );
 }
