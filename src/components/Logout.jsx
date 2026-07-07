@@ -9,8 +9,8 @@ export default function Logout({ loggingout, setIsLoggedIn }) {
 
   return (
     <>
-        <div className={styles.logout__background}>
-      <div className={cont.container}>
+      <div className={styles.logout__background}>
+        <div className={cont.container}>
           <div className={styles.logout__backdrop}>
             <div className={styles.logo__wrapper}>
               <img src="./mglogo.svg" alt="logo" width="27" />
@@ -33,8 +33,8 @@ export default function Logout({ loggingout, setIsLoggedIn }) {
               </button>
             </div>
           </div>
-      </div>
         </div>
+      </div>
     </>
   );
 }
