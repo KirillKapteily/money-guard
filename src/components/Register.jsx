@@ -1,7 +1,6 @@
 import styles from "../styles/register.module.scss";
 import cont from "../styles/body.module.scss";
 
-//register.moduler
 export default function Register({
   setIsRegistering,
   handleRegister,
@@ -80,9 +79,8 @@ export default function Register({
                 onChange={(e) => setUserPasswordCkeck(e.target.value)}
               />
             </div>
-            {/* <div className={styles.validate}><div className={`${validatePassword === "validate__bad" ? styles.validate__bad : (validatePassword === "validate__medium" ? styles.validate__medium : (validatePassword === "validate__good" ? styles.validate__good : (validatePassword === "none" ? styles.none : styles.none)))}`}></div></div> */}
             <div className={styles.validate}>
-              <div className={styles[validatePassword] || styles.none}></div>
+              <div className={styles[validatePassword] || styles.validate__none}></div>
             </div>
             <div className={styles.btn__wrapper}>
               <button className={styles.active__btn} type="submit">

@@ -1,4 +1,3 @@
-//header.module
 import styles from "../styles/header.module.scss";
 import cont from "../styles/body.module.scss";
 
@@ -26,16 +25,14 @@ export default function Header({ name, loggingout }) {
               className={styles.exit__wrapper}
               onClick={() => loggingout(true)}
             >
-                <svg className={styles.exit}>
-                  <use
-                    href="./symbol-defs-k-header.svg#icon-exit"
-                    width="18"
-                    height="18"
-                  ></use>
-                </svg>
-              <p className={styles.exit__text}>
-                Exit
-              </p>
+              <svg className={styles.exit}>
+                <use
+                  href="./symbol-defs-k-header.svg#icon-exit"
+                  width="18"
+                  height="18"
+                ></use>
+              </svg>
+              <p className={styles.exit__text}>Exit</p>
             </div>
           </div>
         </div>
