@@ -1,0 +1,32 @@
+.homeContainer {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 36px;
+  overflow-y: auto;
+  position: relative;
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .mainContent {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .homeContainer {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    padding: 16px;
+  }
+}

@@ -1,32 +1,35 @@
-import TransactionsItem from "./TransactionsItem"
+import TransactionsItem from './TransactionsItem';
+import styles from '../styles/transactions.module.scss';
 
-export default function TransactionsList({ transactions, setTransactions }) {
-  const handleDelete = (id) => {
-    const updated = transactions.filter(t => t.id !== id)
-    setTransactions(updated)
-    localStorage.setItem('transactions', JSON.stringify(updated))
-  }
-
+export default function TransactionsList({ transactions, onEdit, onDelete }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Category</th>
-          <th>Comment</th>
-          <th>Sum</th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(t => (
-          <TransactionsItem
-            key={t.id}
-            transaction={t}
-            onDelete={handleDelete}
-          />
-        ))}
-      </tbody>
-    </table>
-  )
+    <div className={styles.section}>
+      {transactions.length === 0 ? (
+        <p className={styles.empty}>No transactions yet. Add your first one!</p>
+      ) : (
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles.theadRow}>
+              <th className={styles.th}>Date</th>
+              <th className={styles.th}>Type</th>
+              <th className={styles.th}>Category</th>
+              <th className={styles.th}>Comment</th>
+              <th className={`${styles.th} ${styles.thRight}`}>Sum</th>
+              <th className={styles.th}></th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction) => (
+              <TransactionsItem
+                key={transaction.id}
+                transaction={transaction}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
 }
