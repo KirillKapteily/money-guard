@@ -1,9 +1,9 @@
 .logout__background {
-position: relative;
+  position: relative;
   //   display: flex;
-  // justify-content: center; 
-  // align-items: center; 
-  //   min-height: 100vh;  
+  // justify-content: center;
+  // align-items: center;
+  //min-height: 100vh;
 }
 
 .logout__backdrop {
@@ -19,12 +19,12 @@ position: relative;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(50px)!important;
+  backdrop-filter: blur(50px) !important;
   border-radius: 8px;
   margin: 0 auto;
 }
 
-.logout__background::after{
+.logout__background::after {
   content: "";
   position: absolute;
   top: 0;
@@ -35,11 +35,11 @@ position: relative;
   z-index: -1;
 }
 
-.align__center{
-   display: flex;
+.align__center {
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .logo__wrapper {
@@ -69,7 +69,7 @@ position: relative;
 }
 
 .active__btn {
-width: 300px;
+  width: 300px;
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -147,11 +147,11 @@ width: 300px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #623f8b;
-    background-color: white;
+  background-color: white;
   transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &:hover {
-  background-color: rgba(255, 255, 255, 0.604);
+    background-color: rgba(255, 255, 255, 0.604);
   }
 }
 
@@ -168,24 +168,25 @@ width: 300px;
 @media (min-width: 320px) and (max-width: 480px) {
   .logout__backdrop {
     width: 320px;
-    height: 100vh;
+    //height: 100%;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: auto;
+    padding-bottom: auto;
   }
 
-.logout__text{
-  text-align: center;
-  width: 214px;
-}
+  .logout__text {
+    text-align: center;
+    width: 214px;
+    margin-top: 0px;
+  }
 
   .logo__wrapper {
     display: NONE;
   }
 
-  .logout__background {
-    width: 320px;
+  .btn__wrapper {
+    margin-top: 0px;
   }
 
   .input__wrapper {

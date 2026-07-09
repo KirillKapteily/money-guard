@@ -1,8 +1,8 @@
 .reg__background {
-    display: flex;
-  justify-content: center; 
-  align-items: center; 
-    min-height: 100vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .validate {
@@ -86,7 +86,7 @@
 }
 
 .active__btn {
- width: 300px;
+  width: 300px;
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -153,11 +153,11 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #623f8b;
-    background-color: white;
+  background-color: white;
   transition: background-color 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &:hover {
-  background-color: rgba(255, 255, 255, 0.604);
+    background-color: rgba(255, 255, 255, 0.604);
   }
 }
 
@@ -165,7 +165,7 @@
   width: 26px;
   height: 24px;
   margin-right: 20px;
-      position: relative;
+  position: relative;
   bottom: 6px;
 }
 
@@ -190,7 +190,7 @@
   width: 24px;
   height: 24px;
   margin-right: 20px;
-      position: relative;
+  position: relative;
   bottom: 6px;
 }
 
@@ -203,7 +203,7 @@
 @media (min-width: 320px) and (max-width: 480px) {
   .reg__backdrop {
     width: 320px;
-  padding: 0px;
+    padding: 0px;
   }
 
   .validate {
