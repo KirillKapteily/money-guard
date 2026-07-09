@@ -3,6 +3,7 @@ import { Chart } from "chart.js";
 import styles from "./styles/body.module.scss";
 import registerBg from "./assets/register-background.png";
 import loginBg from "./assets/login-background.png";
+import mainBg from "./assets/main-back.png"
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/header";
@@ -49,7 +50,12 @@ function App() {
        document.body.style.backgroundImage = `url(${loginBg})`
       console.log("COINS");
     }
-  }, [isRegistering]);
+
+  if (isLoggedIn) {
+    document.body.style.backgroundImage = `url(${mainBg})`;
+  }
+
+  }, [isRegistering, isLoggedIn]);
 
   useEffect(() => {
     if (userPassword.length < 8) {
