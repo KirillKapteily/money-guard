@@ -3,7 +3,7 @@ import { Chart } from "chart.js";
 import styles from "./styles/body.module.scss";
 import registerBg from "./assets/register-background.png";
 import loginBg from "./assets/login-background.png";
-import mainBg from "./assets/main-back.png"
+import mainBg from "./assets/main-back.png";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/header";
@@ -17,7 +17,7 @@ function App() {
   const [userEmail, setUserEmail] = useState("");
   const [validatePassword, setValidatePassword] = useState("none");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [registeredUser, setRegisteredUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : {};
@@ -44,17 +44,16 @@ function App() {
 
   useEffect(() => {
     if (isRegistering) {
-      document.body.style.backgroundImage = `url(${registerBg})`
+      document.body.style.backgroundImage = `url(${registerBg})`;
       console.log("MONEY");
     } else {
-       document.body.style.backgroundImage = `url(${loginBg})`
+      document.body.style.backgroundImage = `url(${loginBg})`;
       console.log("COINS");
     }
 
-  if (isLoggedIn) {
-    document.body.style.backgroundImage = `url(${mainBg})`;
-  }
-
+    if (isLoggedIn) {
+      document.body.style.backgroundImage = `url(${mainBg})`;
+    }
   }, [isRegistering, isLoggedIn]);
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function App() {
     } else if (userPassword.length === 1) {
       setValidatePassword("validate__none");
       console.log("NONE!!!");
-      
     } else {
       setValidatePassword("validate__medium");
     }
@@ -125,8 +123,8 @@ function App() {
   });
 
   useEffect(() => {
-  localStorage.setItem('transactions', JSON.stringify(transactions));
-}, [transactions]);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
