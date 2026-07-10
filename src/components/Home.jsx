@@ -1,36 +1,36 @@
-import { useState } from 'react';
-import HomeSidebar from './HomeSidebar';
-import TransactionsList from './TransactionsList';
-import AddTransaction from './AddTransactions';
-import EditTransaction from './EditTransactions';
+import { useState } from "react";
+import HomeSidebar from "./HomeSidebar";
+import TransactionsList from "./TransactionsList";
+import AddTransaction from "./AddTransactions";
+import EditTransaction from "./EditTransactions";
 
-import homeStyles from '../styles/home.module.scss';
-import transStyles from '../styles/transactions.module.scss';
+import homeStyles from "../styles/home.module.scss";
+import transStyles from "../styles/transactions.module.scss";
 
 export default function Home({ transactions, setTransactions }) {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
 
-  const handleAdd = newTransaction => {
-    setTransactions(prev => [newTransaction, ...prev]);
+  const handleAdd = (newTransaction) => {
+    setTransactions((prev) => [newTransaction, ...prev]);
     setIsAddModalOpen(false);
   };
 
-  const handleEdit = updatedTransaction => {
-    setTransactions(prev =>
-      prev.map(transaction =>
+  const handleEdit = (updatedTransaction) => {
+    setTransactions((prev) =>
+      prev.map((transaction) =>
         transaction.id === updatedTransaction.id
           ? updatedTransaction
-          : transaction
-      )
+          : transaction,
+      ),
     );
 
     setEditingTransaction(null);
   };
 
-  const handleDelete = id => {
-    setTransactions(prev =>
-      prev.filter(transaction => transaction.id !== id)
+  const handleDelete = (id) => {
+    setTransactions((prev) =>
+      prev.filter((transaction) => transaction.id !== id),
     );
   };
 
