@@ -1,4 +1,5 @@
 import styles from '../styles/transactions.module.scss';
+import editIcon from '../assets/Icon.svg';
 
 export default function TransactionsItem({ transaction, onEdit, onDelete }) {
   const { id, date, type, category, comment, sum } = transaction;
@@ -24,26 +25,24 @@ export default function TransactionsItem({ transaction, onEdit, onDelete }) {
         </span>
       </td>
 
-      <td className={styles.cell}>
-        <div className={styles.actions}>
-          <button
-            className={styles.editBtn}
-            onClick={() => onEdit(transaction)}
-            type="button"
-            aria-label="Edit"
-          >
-      ✏️
-    </button>
+       <td className={`${styles.cell} ${styles.cellActions}`}>
+        <button
+          className={styles.editBtn}
+          onClick={() => onEdit(transaction)}
+          type="button"
+          aria-label="Edit"
+        >
+          <img src={editIcon} alt="Edit" />
+        </button>
 
-    <button
-      className={styles.deleteBtn}
-      onClick={() => onDelete(id)}
-      type="button"
-    >
-      Delete
-    </button>
-  </div>
-</td>
+        <button
+          className={styles.deleteBtn}
+          onClick={() => onDelete(id)}
+          type="button"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   );
 }
