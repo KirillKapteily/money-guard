@@ -1,3 +1,4 @@
+/* Transactions table styles */
 .section {
   width: 100%;
   padding: 0;
@@ -9,9 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 18px;
+  min-height: 240px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
 }
 
 .table {
@@ -21,47 +22,20 @@
 }
 
 .theadRow {
-  background-color: #523B7E99;
-
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .th {
   height: 56px;
-  padding: 0 58px;
+  padding: 0 24px;
   text-align: left;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
-  font-size: 16px;
-
-  &:first-child {
-    border-radius: 16px 0 0 16px;
-  }
-
-  &:last-child {
-    border-radius: 0 16px 16px 0;
-  }
+  font-size: 14px;
 }
 
-.th:nth-child(1) {
-  width: 120px;
-}
-
-.th:nth-child(2) {
-  width: 80px;
+.thRight {
   text-align: center;
-}
-
-.th:nth-child(3) {
-  width: 180px;
-}
-
-.th:nth-child(5) {
-  width: 120px;
-  text-align: center;
-}
-
-.th:nth-child(6) {
-  width: 150px;
 }
 
 .row {
@@ -69,30 +43,31 @@
 }
 
 .row:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .cell {
   padding: 0 18px;
   height: 58px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
 }
 
-.cell:nth-child(2) {
+.cell:nth-child(2),
+.cell:nth-child(5) {
   text-align: center;
 }
 
 .cellSum {
-  text-align: center;
+  font-weight: 700;
 }
 
 .cellActions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .typeBadge {
@@ -100,102 +75,172 @@
 }
 
 .income {
-  color: #ffdb4d;
+  color: #7ef6b5;
 }
 
 .expense {
-  color: #ffffff;
+  color: #ff8fa3;
 }
 
 .sumPositive {
   color: #ffdb4d;
-  font-weight: 700;
 }
 
 .sumNegative {
-  color: #ff6596;
-  font-weight: 700;
+  color: #ff7f7f;
 }
 
-.editBtn {
-  width: 18px;
-  height: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: transparent;
+.editBtn,
+.deleteBtn {
   border: none;
+  background: transparent;
   cursor: pointer;
   padding: 0;
+}
 
-  img {
-    width: 14px;
-    height: 14px;
-    display: block;
-  }
-
-  &:hover {
-    transform: scale(1.15);
-  }
+.editBtn img {
+  width: 18px;
+  height: 18px;
 }
 
 .deleteBtn {
-  width: 69px;
-  height: 29px;
-
-  border: none;
-  border-radius: 18px;
-
-  background: linear-gradient(
-    90deg,
-    #ffc727 0%,
-    #fd6681 100%
-  );
-
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-
-  transition: .2s;
-}
-
-.deleteBtn:hover {
-  transform: scale(1.05);
+  font-size: 13px;
+  color: #ffffff;
 }
 
 .addBtn {
+  width: 54px;
+  height: 54px;
   position: fixed;
   right: 40px;
   bottom: 40px;
-
-  width: 44px;
-  height: 44px;
-
-  border: none;
   border-radius: 50%;
-
-  background: linear-gradient(
-    180deg,
-    #ffc727,
-    #9e40ba,
-    #7000ff
-  );
-
+  background: linear-gradient(180deg, #24cca7 0%, #5c9fff 100%);
+  border: none;
+  box-shadow: 0 20px 40px rgba(36, 204, 167, 0.2);
   cursor: pointer;
+}
 
+/* Statistics styles */
+.statisticsWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.statisticsHeader {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
+}
 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+.statisticsTitle {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+}
 
-  &::before {
-    content: "+";
-    color: white;
-    font-size: 34px;
-    line-height: 1;
+.statisticsContent {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.3fr) minmax(360px, 1fr);
+  gap: 32px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+}
+
+.statisticsChartBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 520px;
+}
+
+.statisticsCenterValue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.statisticsInfoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.statisticsSelectors {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.statisticsSelect {
+  appearance: none;
+  background: rgba(122, 75, 190, 0.85);
+  color: #ffffff;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  min-width: 150px;
+  font-size: 14px;
+  outline: none;
+}
+
+.statisticsLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.statisticsItemRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.statisticsItemRow:last-child {
+  border-bottom: none;
+}
+
+.statisticsCategoryName {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.statisticsColorMarker {
+  width: 14px;
+  height: 14px;
+  border-radius: 6px;
+}
+
+.statisticsCategorySum {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .statisticsContent {
+    grid-template-columns: 1fr;
+  }
+
+  .statisticsSelectors {
+    justify-content: flex-start;
   }
 }

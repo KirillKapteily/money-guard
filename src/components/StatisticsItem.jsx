@@ -1,33 +1,21 @@
-// export default function StatisticsItem({item}) {
-// const {category, amount, color} = item;
+import react from "react";
+import transStyles from "../styles/transactions.module.scss";
 
-//     return (
-//         <li>
-//             <div>
-//                 <span></span>
-//             </div>
-//         </li>
-//     )
-// }
-
-
-import React from 'react';
-
-export default function StatisticsItem({ item }) {
-  const { category, amount, color } = item;
-
+const StatisticsItem = ({ name, value, color }) => {
   return (
-    <li className="statistics-item">
-      <div className="category-info">
-        <span 
-          className="color-marker" 
+    <div className={transStyles.statisticsItemRow}>
+      <div className={transStyles.statisticsCategoryName}>
+        <span
+          className={transStyles.statisticsColorMarker}
           style={{ backgroundColor: color }}
-        ></span>
-        <span className="category-name">{category}</span>
+        />
+        {name}
       </div>
-      <span className="amount-value">
-        {amount.toLocaleString('ru-RU', { minimumFractionDigits: 2 })}
+      <span className={transStyles.statisticsCategorySum}>
+        {value.toLocaleString("ru-RU", { minimumFractionDigits: 2 })}
       </span>
-    </li>
+    </div>
   );
-}
+};
+
+export default StatisticsItem;
