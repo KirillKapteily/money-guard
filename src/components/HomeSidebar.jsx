@@ -25,7 +25,7 @@ const RenderCustomizedLabel = (props) => {
 };
 
 
-const HomeSidebar = ({ transactions = [] }) => {
+const HomeSidebar = ({ transactions = [], activeSection, onNavigate }) => {
   const [rates, setRates] = useState({ usd: null, eur: null });
   const [loading, setLoading] = useState(true);
 
@@ -80,11 +80,17 @@ const HomeSidebar = ({ transactions = [] }) => {
   return (
     <div className={styles.sidebarContainer}>
       <nav className={styles.navigation}>
-        <div className={styles.navItem}>
+        <div
+          className={`${styles.navItem} ${activeSection === "home" ? styles.navItemActive : ""}`}
+          onClick={() => onNavigate("home")}
+        >
           <div className={styles.iconWrapper}></div>
           <span className={styles.navText}>Home</span>
         </div>
-        <div className={styles.navItem}>
+        <div
+          className={`${styles.navItem} ${activeSection === "statistics" ? styles.navItemActive : ""}`}
+          onClick={() => onNavigate("statistics")}
+        >
           <div className={styles.iconWrapper}></div>
           <span className={styles.navText}>Statistic</span>
         </div>
