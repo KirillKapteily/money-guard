@@ -25,19 +25,44 @@ const COLOR_PALETTE = [
   "#00AD84",
 ];
 
+const DEFAULT_STATS_DATA = [
+  { name: "Car", value: 1500, color: CATEGORY_COLORS.Car },
+  { name: "Self care", value: 800, color: CATEGORY_COLORS.SelfCare },
+  { name: "Child care", value: 2208.5, color: CATEGORY_COLORS.ChildCare },
+  { name: "Household products", value: 300, color: CATEGORY_COLORS.Household },
+  { name: "Education", value: 3400, color: CATEGORY_COLORS.Education },
+  { name: "Leisure", value: 1230, color: CATEGORY_COLORS.Leisure },
+  { name: "Other expenses", value: 610, color: CATEGORY_COLORS.Other },
+];
+
+const DEFAULT_STATS_TOTALS = {
+  totalExpenses: 22549.24,
+  totalIncome: 27350,
+};
+
 const Statistics = ({ transactions = [] }) => {
   const [month, setMonth] = useState("March");
   const [year, setYear] = useState("2022");
 
-  const data = useMemo(() => {
+  const { data, totalExpenses, totalIncome } = useMemo(() => {
     const totals = {};
     const orderedCategories = [];
+    let expenses = 0;
+    let income = 0;
 
     transactions.forEach((transaction) => {
       const amount = Number(transaction.sum) || 0;
-      const isExpense = transaction.type === "-" || transaction.type === "expense";
-      if (!isExpense || amount === 0) return;
+      if (amount === 0) return;
 
+      if (transaction.type === "+" || transaction.type === "income") {
+        income += Math.abs(amount);
+        return;
+      }
+
+      const isExpense = transaction.type === "-" || transaction.type === "expense";
+      if (!isExpense) return;
+
+      expenses += Math.abs(amount);
       const categoryName = transaction.category?.trim() || "Other expenses";
       if (!totals[categoryName]) {
         totals[categoryName] = 0;
@@ -46,14 +71,26 @@ const Statistics = ({ transactions = [] }) => {
       totals[categoryName] += Math.abs(amount);
     });
 
-    return orderedCategories.map((category, index) => ({
-      name: category,
-      value: totals[category],
-      color: CATEGORY_COLORS[category] || COLOR_PALETTE[index % COLOR_PALETTE.length],
-    }));
+    if (orderedCategories.length === 0) {
+      return {
+        data: DEFAULT_STATS_DATA,
+        totalExpenses: DEFAULT_STATS_TOTALS.totalExpenses,
+        totalIncome: DEFAULT_STATS_TOTALS.totalIncome,
+      };
+    }
+
+    return {
+      data: orderedCategories.map((category, index) => ({
+        name: category,
+        value: totals[category],
+        color: CATEGORY_COLORS[category] || COLOR_PALETTE[index % COLOR_PALETTE.length],
+      })),
+      totalExpenses: expenses,
+      totalIncome: income,
+    };
   }, [transactions]);
 
-  const totalAmount = data.reduce((sum, item) => sum + item.value, 0);
+  const totalAmount = totalExpenses;
 
   const chartData = data.length
     ? data
@@ -129,7 +166,7 @@ const Statistics = ({ transactions = [] }) => {
             </select>
           </div>
 
-          <div className={transStyles.statisticsLegend}>
+            <div className={transStyles.statisticsLegend}>
             {data.map((item) => (
               <StatisticsItem
                 key={item.name}
@@ -138,6 +175,21 @@ const Statistics = ({ transactions = [] }) => {
                 color={item.color}
               />
             ))}
+          </div>
+
+          <div className={transStyles.statisticsSummary}>
+            <div className={transStyles.statisticsSummaryRow}>
+              <span>Expenses:</span>
+              <span className={transStyles.expenseAmount}>{`₴ ${totalExpenses.toLocaleString("ru-RU", {
+                minimumFractionDigits: 2,
+              })}`}</span>
+            </div>
+            <div className={transStyles.statisticsSummaryRow}>
+              <span>Income:</span>
+              <span className={transStyles.incomeAmount}>{`₴ ${totalIncome.toLocaleString("ru-RU", {
+                minimumFractionDigits: 2,
+              })}`}</span>
+            </div>
           </div>
         </div>
       </div>

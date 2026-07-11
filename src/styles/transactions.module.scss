@@ -147,9 +147,6 @@
   grid-template-columns: minmax(360px, 1.3fr) minmax(360px, 1fr);
   gap: 32px;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 32px;
 }
 
 .statisticsChartBox {
@@ -225,7 +222,6 @@
 .statisticsColorMarker {
   width: 14px;
   height: 14px;
-  border-radius: 6px;
 }
 
 .statisticsCategorySum {
@@ -243,4 +239,31 @@
   .statisticsSelectors {
     justify-content: flex-start;
   }
+}
+
+.statisticsSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.statisticsSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.expenseAmount {
+  color: #ff7f7f;
+  font-weight: 700;
+}
+
+.incomeAmount {
+  color: #7ef6b5;
+  font-weight: 700;
 }
