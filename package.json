@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "autoprefixer": "^10.5.2",
     "chart.js": "^4.5.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-select": "^5.10.2",
     "recharts": "^3.9.2",
     "styled-components": "^6.4.2"
   },
@@ -24,6 +24,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",

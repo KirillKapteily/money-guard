@@ -1,0 +1,298 @@
+// .overlay {
+//     position: fixed;
+//     inset: 0;
+//     background: rgba(34, 13, 91, 0.35);
+//     backdrop-filter: blur(6px);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     z-index: 999;
+// }
+
+// .modal {
+//     position: relative;
+//     width: 533px;
+//     min-height: 570px;
+//     padding: 40px;
+//     border-radius: 8px;
+//     background: rgba(255, 255, 255, .1);
+//     backdrop-filter: blur(50px);
+//     box-shadow: 0 4px 60px rgba(0, 0, 0, .25);
+// }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.modal {
+  position: relative;
+  z-index: 2;
+  width: 533px;
+  padding: 40px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
+  border-radius: 8px;
+}
+
+// .modal {
+//     width: 533px;
+//     padding: 40px;
+//     border-radius: 8px;
+//     background: rgba(255,255,255,.1);
+//     backdrop-filter: blur(50px);
+//     box-shadow: 0 4px 60px rgba(0,0,0,.25);
+// }
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-family: "Poppins";
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.switchLabel {
+    color: #E0E0E0;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Poppins";
+}
+
+.activeIncome {
+    color: #FFB627;
+}
+
+.activeExpense {
+    color: #FF868D;
+}
+
+.toggle {
+    width: 80px;
+    height: 40px;
+    background: white;
+    border-radius: 40px;
+    position: relative;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: linear-gradient(180deg,
+            #FFC727,
+            #FD6681);
+
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: .3s;
+}
+
+.expense {
+    left: 44px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.897);
+    color: white;
+    font-size: 18px;
+    margin-bottom: 28px;
+    outline: none;
+}
+
+.input::placeholder{
+    color:white;
+    opacity:.7;
+}
+
+.row {
+    display: flex;
+    gap: 32px;
+}
+
+.row .input {
+    flex: 1;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.addBtn {
+    width: 300px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-family: "Poppins";
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    background: linear-gradient(
+        96.76deg,
+        #FFC727 -16.42%,
+        #9E40BA 97.04%,
+        #7000FF 150.71%
+    );
+
+    box-shadow: 1px 9px 15px rgba(0,0,0,.2);
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.addBtn:hover {
+    transform: scale(1.02);
+}
+
+.cancelBtn {
+    width: 300px;
+    height: 50px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #fff;
+    color: #623F8B;
+
+    font-family: "Poppins";
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+
+    box-shadow: 1px 9px 15px rgba(0,0,0,.2);
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cancelBtn:hover {
+    background: rgba(255,255,255,.85);
+}
+
+// .switchWrapper {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     gap: 18px;
+//     margin: 30px 0 40px;
+// }
+
+.switchWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 35px 0 45px;
+}
+
+.switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: #ffffff;
+    cursor: pointer;
+    padding: 0;
+}
+
+.circle {
+    position: absolute;
+    top: 4px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .25s;
+}
+
+.left {
+    left: 4px;
+    background: #ffb627;
+}
+
+.right {
+    left: 44px;
+    background: #ff868d;
+}
+
+.activeIncome {
+    color: #ffb627;
+    font-weight: 700;
+}
+
+.activeExpense {
+    color: #ff868d;
+    font-weight: 700;
+}
+
+.inactive {
+    color: rgba(255, 255, 255, .6);
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: transparent;
+    color: #bdbdbd;
+    font-size: 24px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.close:hover {
+    color: white;
+}
